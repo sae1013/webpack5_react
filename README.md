@@ -416,9 +416,7 @@ module.exports = {
 
 - eval-source-map 을 사용해서 빌드 했을 때
     
-이번엔 웹팩에서 개발모드 소스맵에 추천하는 eval-source-map을 사용했을때이다.
-
-빌드된 결과물이 inline방식과 완전 다르다. 
+이번엔 웹팩에서 개발모드 소스맵에 추천하는 eval-source-map을 사용했을때이다. 
     
 ![스크린샷 2022-10-30 오후 8 58 51](https://user-images.githubusercontent.com/63229394/198887808-b0e54034-c321-4313-a76f-1b9379a2e620.png)
     
