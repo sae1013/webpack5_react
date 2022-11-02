@@ -1,0 +1,24 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+.button__wrap {
+  position: fixed;
+  >button {
+    border: none;
+    background-color: #f2f2f2;
+    padding: 1rem;
+    &:not(:nth-child(1)) {
+      border-left: 1px solid #000;
+    }
+  }
+  button.highlight {
+    background-color: black;
+    color:white;
+  }
+
+  button:hover {
+    cursor:pointer;
+  }
+}
+
