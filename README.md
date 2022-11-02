@@ -447,7 +447,10 @@ module.exports = {
 
 ### 11. 타입스크립트 로더 적용 
 ts-loader를 설치하고 resolve, module.rules에 추가한다.
-ts-loader는 ts파일을 js파일로 컴파일 한다. 변환된 js파일은 babel-loader를 통해 es6 -> es5 로 변환된다.
+ts-loader는 ts파일을 js파일로 컴파일 할 뿐만 아니라, 컴파일된 js파일을 es6->es5 로 트랜스파일링 하는, babel-loader의 역할까지 포함되어 있다고 한다.  
+설정에 따라 다르겠지만, js는 babel-loader, ts는 ts-loader를 사용했다.  
+ts-loader 대신 , babel-loader를 사용할때 참고 https://www.reddit.com/r/typescript/comments/rnw04j/do_you_guys_compile_with_tsloader_or_babelloader/
+
 
 ```jsx
 module.exports = {
