@@ -441,9 +441,94 @@ module.exports = {
 }
 ```
 
-여기까지가 아주 간단한 ‘기본적’인 세팅 
+
 
 ---
+
+### 11. 타입스크립트 로더 적용 
+ts-loader를 설치하고 resolve, module.rules에 추가한다.
+ts-loader는 ts파일을 js파일로 컴파일 한다. 변환된 js파일은 babel-loader를 통해 es6 -> es5 로 변환된다.
+
+```jsx
+module.exports = {
+    
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: '/node_modules',
+                use: ['babel-loader'],
+            },
+            { // ts-loader 추가
+                test: /\.(ts|tsx)$/,
+                use: 'ts-loader',
+                exclude: '/node_modules',
+            },
+        ],
+    },
+    resolve: { // resolve extension 추가
+        extensions: ['.tsx', '.jsx', '.ts', '.js', '.scss','.css'],  
+    },
+    
+}
+
+```
+
+### 12. 타입스크립트에서 module.scss 사용하기
+먼저, css 모듈을 사용할 수 있도록, css-loader의 옵션을 설정한다.
+scss 모듈도 사용할 수 있도록 scss 파일의 rules에도 추가한다.   
+타입스크립트 컴파일러는, js, ts 파일외에 다른 파일을 모듈로 import할때, 에러를 뱉는다.  
+따라서, .scss 파일과 .css 파일이 모듈임을 TS컴파일러가 알 수 있도록, 타입선언 파일에 작성해준다.
+
+
+
+```jsx
+module.exports = {
+    
+    module: {
+        rules: [
+            ...
+            {
+              test: /\.module\.css$/,
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: 'css-loader',
+                  options: {
+                    modules: true,
+                  },
+                },
+
+              ],
+            },
+            {
+                test: /\.module\.s(alc)ss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                    },
+
+                ],
+            },
+        ],
+    },
+    
+}
+
+```
+```jsx
+// declarations.d.ts
+
+declare module '*.scss';
+declare module '*.css';
+```
 
 ### 세팅에 필요한 모듈
 
